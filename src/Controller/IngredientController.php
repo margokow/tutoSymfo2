@@ -55,7 +55,7 @@ class IngredientController extends AbstractController
                 'Votre ingrédient a été créé avec succès !'
             );
 
-            // return $this->redirectToRoute('app_ingredient'); // Redirection vers la liste des ingrédients
+            return $this->redirectToRoute('app_ingredient_new'); // Redirection vers la liste des ingrédients
         }
 
         return $this->render('pages/ingredient/new.html.twig', [
