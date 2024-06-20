@@ -56,7 +56,7 @@ class Recipe
     private ?float $price = null;
 
     #[ORM\Column]
-    private ?bool $is_favorite = null;
+    private ?bool $is_favorite = false;
 
     #[ORM\Column]
     #[Assert\NotNull()]
