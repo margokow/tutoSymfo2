@@ -39,10 +39,10 @@
                     <td>{{(recipe.difficulty is same as (null)) ? "Non renseigné" : recipe.difficulty}}</td>
                     <td>{{recipe.createdAt|date('d/m/Y')}}</td>
                     <td>
-                        <a href="{{path('app_ingredient_edit', {id: recipe.id }) }}" class="btn btn-info">Modifier</a>
+                        <a href="{{path('app_recipe_edit', {id: recipe.id }) }}" class="btn btn-info">Modifier</a>
                     </td>
                     <td>
-                        <a href="{{path('app_ingredient_delete', {id: recipe.id }) }}" class="btn btn-danger">Supprimer</a>
+                        <a href="{{path('app_recipe_delete', {id: recipe.id }) }}" class="btn btn-danger">Supprimer</a>
                     </td>
             </tr>
         {% endfor %}
