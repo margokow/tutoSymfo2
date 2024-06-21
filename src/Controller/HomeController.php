@@ -8,9 +8,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController 
 {
-    #[Route('/home', 'page/home.index', methods:['GET'])]
+    #[Route('/home', name: 'app_home', methods:['GET'])]
     public function index():Response 
     {
-        return $this->render('home.html.twig');
+        return $this->render('pages/home.html.twig');
     }
 }

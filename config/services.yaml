@@ -20,7 +20,7 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    App\Entity\Listener\:
+    App\EntityListener\:
         resource: "../src/EntityListener"
         tags: ["doctrine.orm.entity_listener"]
 
