@@ -16,10 +16,21 @@ use Symfony\Component\Form\Extension\Core\Type\RangeType; // Import de TextType
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Validator\Constraints as Assert; // Import des contraintes de validation
 
 class RecipeType extends AbstractType
 {
+
+    private $token;
+
+    public function __construct(TokenStorageInterface $token)
+    {
+        $this->token = $token; 
+    }
+
+
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -128,15 +139,18 @@ class RecipeType extends AbstractType
             ])
 
             ->add('ingredients', EntityType::class, [
+                'class'=>Ingredient::class,
+                'query_builder' => function (IngredientRepository $r) {
+                    return $r->createQueryBuilder('i')
+                        ->where('i.user = :user')
+                        ->orderBy('i.name', 'ASC')
+                        ->setParameter('user', $this->token->getToken()->getUser());
+                },
+
                 'label' => 'Les ingrédients',
                 'label_attr'=>[
                     'class' => 'form-label mt-4'
                 ],
-                'class' => Ingredient::class, 
-                'query_builder' => function (IngredientRepository $r) {
-                    return $r->createQueryBuilder(('i'))
-                        ->orderBy('i.name', 'ASC');
-                },
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,

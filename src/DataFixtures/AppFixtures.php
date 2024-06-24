@@ -55,7 +55,8 @@ public function load(ObjectManager $manager): void
                     ->setDifficulty(mt_rand(0, 1) == 1 ? mt_rand(1, 5) : null)
                     ->setDescription($this->faker->text(300))
                     ->setPrice(mt_rand(0, 1) == 1 ? mt_rand(1, 1000) : null)
-                    ->setFavorite(mt_rand(0, 1) == 1); // Correction ici pour utiliser un booléen directement
+                    ->setFavorite(mt_rand(0, 1) == 1) // Correction ici pour utiliser un booléen directement
+                    ->setUser($users[mt_rand(0, count($users)-1)]);
 
             for ($k = 0; $k < mt_rand(5, 15); $k++) {
                 $recipe->addIngredient($ingredients[mt_rand(0, count($ingredients) - 1)]); // Correction ici
